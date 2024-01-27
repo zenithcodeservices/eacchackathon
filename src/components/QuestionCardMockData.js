@@ -35,6 +35,4 @@ export const QuestionCardMockData = {
     cardContent: '<p>Test Content</p>',
     cardFooter: '<p>Test Footer</p>'
   }]
-  ,
-  'length': 6,
 }

@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import QuestionCard from "@/components/QuestionCard";
 import Image from "next/image";
 import { useState } from 'react';
-
+import {QuestionCardMockData} from '@/components/QuestionCardMockData'
 
 export default function Home() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
@@ -18,7 +18,7 @@ export default function Home() {
     setCurrentCardIndex((prevIndex) => (prevIndex - 1 + numCards) % numCards);
   };
 
-  const numCards = 2; // Number of QuestionCard components
+  const numCards = QuestionCardMockData.data.length; // Number of QuestionCard components
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -40,32 +40,29 @@ export default function Home() {
         />
       </div>
 
-      <div>
-        
-        <QuestionCard
-          cardTitle="Card Title"
-          cardDescription="Card Description"
-          cardContent="Card Content"
-          cardFooter="Card Footer"
-          isVisible={currentCardIndex === 0}
-        />
-        <QuestionCard
-          cardTitle="Card 2 Title"
-          cardDescription="Card Description 2"
-          cardContent="Card Content 2"
-          cardFooter="Card Footer 2"
-          isVisible={currentCardIndex === 1}
-        />
+      <div className="mt-4">
+        {QuestionCardMockData.data.map((item, index) => {
+          return (
+            <div key={item.cardTitle}>
+              <QuestionCard
+                cardTitle={item.cardTitle}
+                cardDescription={item.cardDescription}
+                cardContent={item.cardContent}
+                cardFooter={item.cardFooter}
+                isVisible={currentCardIndex === index}
+              />
+            </div>
+          )
+        })}
+      </div>
 
-        <div className="flex justify-between mt-4">
-          <button onClick={prevCard} disabled={currentCardIndex === 0}>
+      <div className="flex justify-between mt-4">
+        <button onClick={prevCard} disabled={currentCardIndex === 0}>
           Previous
-          </button>
-          <button onClick={nextCard} disabled={currentCardIndex === numCards - 1}>
+        </button>
+        <button onClick={nextCard} disabled={currentCardIndex === numCards - 1}>
           Next
-          </button>
-        </div>
-
+        </button>
       </div>
 
       <Footer />
