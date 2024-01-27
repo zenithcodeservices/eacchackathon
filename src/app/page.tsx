@@ -2,23 +2,10 @@
 
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import QuestionCard from "@/components/QuestionCard";
 import Image from "next/image";
-import { useState } from 'react';
-
+import { WelcomeForm } from "@/components/WelcomeForm";
 
 export default function Home() {
-  const [currentCardIndex, setCurrentCardIndex] = useState(0);
-
-  const nextCard = () => {
-    setCurrentCardIndex((prevIndex) => (prevIndex + 1) % numCards);
-  };
-
-  const prevCard = () => {
-    setCurrentCardIndex((prevIndex) => (prevIndex - 1 + numCards) % numCards);
-  };
-
-  const numCards = 2; // Number of QuestionCard components
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -40,33 +27,7 @@ export default function Home() {
         />
       </div>
 
-      <div>
-        
-        <QuestionCard
-          cardTitle="Card Title"
-          cardDescription="Card Description"
-          cardContent="Card Content"
-          cardFooter="Card Footer"
-          isVisible={currentCardIndex === 0}
-        />
-        <QuestionCard
-          cardTitle="Card 2 Title"
-          cardDescription="Card Description 2"
-          cardContent="Card Content 2"
-          cardFooter="Card Footer 2"
-          isVisible={currentCardIndex === 1}
-        />
-
-        <div className="flex justify-between mt-4">
-          <button onClick={prevCard} disabled={currentCardIndex === 0}>
-          Previous
-          </button>
-          <button onClick={nextCard} disabled={currentCardIndex === numCards - 1}>
-          Next
-          </button>
-        </div>
-
-      </div>
+      <WelcomeForm/>
 
       <Footer />
     </main>
