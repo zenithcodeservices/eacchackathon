@@ -18,7 +18,7 @@ export const QuestionCardMockData = {
     cardFooter: '<p>Test Footer</p>'
   },
   {
-    cardTitle: 'How long do you want your podcase?',
+    cardTitle: 'How long do you want your podcast?',
     cardDescription: 'Choose your podcast length',
     cardContent: '<p>Test Content</p>',
     cardFooter: '<p>Test Footer</p>'

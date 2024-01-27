@@ -14,16 +14,16 @@ const QuestionCard = (props) => {
   return (
     <>
       {isVisible && (
-        <Card className="bg-white shadow-md p-4 rounded-lg">
+        <Card className="bg-white shadow-md p-4 rounded-lg"style={{ minWidth: '560px' }} >
           <CardHeader className="mb-4">
             <CardTitle className="text-xl font-bold">{cardTitle}</CardTitle>
             <CardDescription className="text-gray-500">{cardDescription}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-base">{cardContent}</p>
+            <div className="text-base">{cardContent}</div>
           </CardContent>
           <CardFooter className="mt-4">
-            <p className="text-gray-400">{cardFooter}</p>
+            <div  className="flex justify-between w-full mt-4">{cardFooter}</div>
           </CardFooter>
         </Card>
       )}
