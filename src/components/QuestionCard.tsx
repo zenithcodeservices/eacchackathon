@@ -20,7 +20,7 @@ const QuestionCard = (props) => {
             <CardDescription className="text-gray-500">{cardDescription}</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="text-base">{cardContent}</div>
+            <div>{cardContent}</div>
           </CardContent>
           <CardFooter className="mt-4">
             <div  className="flex justify-between w-full mt-4">{cardFooter}</div>
