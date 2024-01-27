@@ -1,4 +1,4 @@
-export const QuestionCardMockData = {
+export const WelcomeFormMockData = {
   'data': [{
     cardTitle: 'What\'s your name?',
     cardDescription: 'Share your name to create your personalised podcast',
@@ -26,12 +26,6 @@ export const QuestionCardMockData = {
   {
     cardTitle: 'Generate your podcast',
     cardDescription: 'Let;s create your personalised product',
-    cardContent: '<p>Test Content</p>',
-    cardFooter: '<p>Test Footer</p>'
-  },
-  {
-    cardTitle: 'Success',
-    cardDescription: 'Listen now!',
     cardContent: '<p>Test Content</p>',
     cardFooter: '<p>Test Footer</p>'
   }]
