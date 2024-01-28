@@ -7,13 +7,13 @@ import { cn } from "../lib/utils"
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const fontSans = FontSans({
+const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
 })
 
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Pod Pro App",
   description: "Personalised Pods",
 };

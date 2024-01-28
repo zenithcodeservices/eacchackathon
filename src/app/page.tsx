@@ -2,10 +2,9 @@
 
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import QuestionCard from "@/components/QuestionCard";
 import Image from "next/image";
 import { useState } from 'react';
-import { QuestionCardMockData } from '@/components/QuestionCardMockData';
+import { WelcomeFormMockData } from '@/components/WelcomeFormMockData';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label"
@@ -13,6 +12,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { cn } from "@/lib/utils"
 import { Slider } from "@/components/ui/slider"
 import { useRouter } from 'next/navigation';
+import QuestionCard from "@/components/QuestionCard";
 
 type SliderProps = React.ComponentProps<typeof Slider>
 
@@ -51,7 +51,7 @@ export default function Home() {
 
   // Function to go to the next card
   const nextCard = () => {
-    if (currentStep < QuestionCardMockData.length - 1) {
+    if (currentStep < WelcomeFormMockData.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
       handleSubmit();
@@ -129,24 +129,24 @@ export default function Home() {
 
   const renderSuccessCard = () => (
     <>
-    <div className="flex flex-col items-center justify-center p-8 bg-white rounded-lg shadow gap-8">
-      <h1 className="mb-2 font-semibold text-2xl">Podcast Created Successfully!</h1>
-      <audio controls>
-        <source src={mp3Url} type="audio/mpeg" />
+      <div className="flex flex-col items-center justify-center p-8 bg-white rounded-lg shadow gap-8">
+        <h1 className="mb-2 font-semibold text-2xl">Podcast Created Successfully!</h1>
+        <audio controls>
+          <source src={mp3Url} type="audio/mpeg" />
         Your browser does not support the audio element.
-      </audio>
-      <p className="text-sm text-gray-500">
-        {/* {} //extend to show transcript */}
-      </p>
-      <div className="flex justify-between w-full mt-4 flex-end">
-        <Button variant="outline" className="mt-4" onClick={() => setShowSuccessCard(false)}>
+        </audio>
+        <p className="text-sm text-gray-500">
+          {/* {} //extend to show transcript */}
+        </p>
+        <div className="flex justify-between w-full mt-4 flex-end">
+          <Button variant="outline" className="mt-4" onClick={() => setShowSuccessCard(false)}>
           Create Another
-        </Button>
-        <Button variant="outline" className="mt-4" onClick={handleViewPodcastsClick}>
+          </Button>
+          <Button variant="outline" className="mt-4" onClick={handleViewPodcastsClick}>
           View Podcasts
-        </Button>
+          </Button>
+        </div>
       </div>
-    </div>
     </>
   );  
   
@@ -168,131 +168,131 @@ export default function Home() {
   };
 
   const renderQuestionCard = () => {
-    const cardData = QuestionCardMockData.data[currentStep];
+    const cardData = WelcomeFormMockData.data[currentStep];
     let cardContentComponent;
 
     switch (currentStep) {
-      case 0: // Enter name
-        cardContentComponent = (
-          <Input
-            name="name"
-            value={userData.name}
-            onChange={(e) => handleInputChange(e.target.name, e.target.value)}
-            placeholder="John Smith"
-          />
-        );
-        break;
-      case 1: // Add creators
-        cardContentComponent = (
+    case 0: // Enter name
+      cardContentComponent = (
+        <Input
+          name="name"
+          value={userData.name}
+          onChange={(e) => handleInputChange(e.target.name, e.target.value)}
+          placeholder="John Smith"
+        />
+      );
+      break;
+    case 1: // Add creators
+      cardContentComponent = (
         <>
-        <div className="flex flex-wrap p-4 mt-4 gap-2">
-          <div>
-        <Input
-          name="creator-0"
-          value={userData.creators[0]}
-          onChange={(e) => handleCreatorChange(e.target.value, 0)}
-          placeholder="Creator 1"
-        />
-        </div>
-        <div>
-        <Input
-          name="creator-1"
-          value={userData.creators[1]}
-          onChange={(e) => handleCreatorChange(e.target.value, 1)}
-          placeholder="Creator 2"
-        />
-        </div>
-        <div>
-        <Input
-          name="creator-2"
-          value={userData.creators[2]}
-          onChange={(e) => handleCreatorChange(e.target.value, 2)}
-          placeholder="Creator 3"
-        />
-        </div>
-        </div>
-      </>
-        );
-        break;
-      case 2: // Add Schedule
-        cardContentComponent = (
-            <RadioGroup 
-            defaultValue={userData.schedule} 
-            onChange={(value) => handleInputChange('schedule', value)}
-          >
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="Daily" id="schedule-daily" />
-              <Label htmlFor="schedule-daily">Daily</Label>
+          <div className="flex flex-wrap p-4 mt-4 gap-2">
+            <div>
+              <Input
+                name="creator-0"
+                value={userData.creators[0]}
+                onChange={(e) => handleCreatorChange(e.target.value, 0)}
+                placeholder="Creator 1"
+              />
             </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="Weekly" id="schedule-weekly" />
-              <Label htmlFor="schedule-weekly">Weekly</Label>
+            <div>
+              <Input
+                name="creator-1"
+                value={userData.creators[1]}
+                onChange={(e) => handleCreatorChange(e.target.value, 1)}
+                placeholder="Creator 2"
+              />
             </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="Bi-Weekly" id="schedule-biweekly" />
-              <Label htmlFor="schedule-biweekly">Bi-Weekly</Label>
+            <div>
+              <Input
+                name="creator-2"
+                value={userData.creators[2]}
+                onChange={(e) => handleCreatorChange(e.target.value, 2)}
+                placeholder="Creator 3"
+              />
             </div>
-          </RadioGroup>
-        );
-        break;
-        case 3: // Add Length
-        const sliderValue = Object.keys(lengthValues).find(key => lengthValues[key] === userData.length) || 0;
-        cardContentComponent = (
-          <div className="space-y-2">
-            <Slider
+          </div>
+        </>
+      );
+      break;
+    case 2: // Add Schedule
+      cardContentComponent = (
+        <RadioGroup 
+          defaultValue={userData.schedule} 
+          onChange={(value) => handleInputChange('schedule', value)}
+        >
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="Daily" id="schedule-daily" />
+            <Label htmlFor="schedule-daily">Daily</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="Weekly" id="schedule-weekly" />
+            <Label htmlFor="schedule-weekly">Weekly</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="Bi-Weekly" id="schedule-biweekly" />
+            <Label htmlFor="schedule-biweekly">Bi-Weekly</Label>
+          </div>
+        </RadioGroup>
+      );
+      break;
+    case 3: // Add Length
+      const sliderValue = Object.keys(lengthValues).find(key => lengthValues[key] === userData.length) || 0;
+      cardContentComponent = (
+        <div className="space-y-2">
+          <Slider
             min={0}
             max={100}
             step={50} // Since you have three steps: 0, 50, 100
             defaultValue={[Number(sliderValue)]}
             onChange={(value) => {
-              length = Object.keys(sliderSteps).find(key => sliderSteps[key] === value);
+              length = parseInt(Object.keys(sliderSteps).find(key => sliderSteps[key] === value) ?? '0', 10);
               handleInputChange('length', length);
             }}
             className="w-full"
-            />
-            <div className="flex justify-between">
-              {Object.entries(sliderSteps).map(([value, label]) => (
-                <span key={value} className="text-xs">
-                  {label}
-                </span>
-              ))}
-            </div>
+          />
+          <div className="flex justify-between">
+            {Object.entries(sliderSteps).map(([value, label]) => (
+              <span key={value} className="text-xs">
+                {label}
+              </span>
+            ))}
           </div>
-        );
-        break;
-        case 4: // Generate
-        cardContentComponent = (
-          null
-          // <div className="flex flex-col items-center justify-center">
-          //   <h4>Generate Your Podcast</h4>
-          // </div>
-        );
-        break;
-      default:
-        cardContentComponent = <div>{cardData.cardContent}</div>;
-    }
-      return (
-        
-        <QuestionCard
-          cardTitle={cardData.cardTitle}
-          cardDescription={cardData.cardDescription}
-          cardContent={cardContentComponent}
-          cardFooter={
-            <div className="flex justify-between w-full mt-4 flex-end">
-              {currentStep > 0 && (
-                <Button variant="outline"
-                onClick={prevCard}>Back</Button>
-              )}
-              <Button 
-              onClick={nextCard}>
-                {currentStep < QuestionCardMockData.length - 1 ? 'Next' : 'Submit'}
-              </Button>
-            </div>
-          }
-          isVisible={true}
-        />
+        </div>
       );
-      }
+      break;
+    case 4: // Generate
+      cardContentComponent = (
+        null
+        // <div className="flex flex-col items-center justify-center">
+        //   <h4>Generate Your Podcast</h4>
+        // </div>
+      );
+      break;
+    default:
+      cardContentComponent = <div>{cardData.cardContent}</div>;
+    }
+    return (
+        
+      <QuestionCard
+        cardTitle={cardData.cardTitle}
+        cardDescription={cardData.cardDescription}
+        cardContent={cardContentComponent}
+        cardFooter={
+          <div className="flex justify-between w-full mt-4 flex-end">
+            {currentStep > 0 && (
+              <Button variant="outline"
+                onClick={prevCard}>Back</Button>
+            )}
+            <Button 
+              onClick={nextCard}>
+              {currentStep < WelcomeFormMockData.length - 1 ? 'Next' : 'Submit'}
+            </Button>
+          </div>
+        }
+        isVisible={true}
+      />
+    );
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -327,13 +327,13 @@ export default function Home() {
 }
 
 
-        {/* <div className="flex justify-between mt-4">
+{/* <div className="flex justify-between mt-4">
           <Button variant="outline" className="justify-center mt-2"
             {...currentStep > 0 && <button onClick={prevCard}>Back</button>}
           />
           <Button 
           variant="outline"  className="justify-center mt-2"
             onClick={nextCard}
-            {...currentStep < QuestionCardMockData.length - 1 ? 'Next' : 'Submit'}
+            {...currentStep < WelcomeFormMockData.length - 1 ? 'Next' : 'Submit'}
           />
         </div> */}
