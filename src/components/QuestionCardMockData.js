@@ -25,7 +25,7 @@ export const QuestionCardMockData = {
   },
   {
     cardTitle: 'Generate your podcast',
-    cardDescription: 'Let;s create your personalised product',
+    cardDescription: 'Lets create your personalised product',
     cardContent: '<p>Test Content</p>',
     cardFooter: '<p>Test Footer</p>'
   }]

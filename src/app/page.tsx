@@ -45,7 +45,9 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [showSuccessCard, setShowSuccessCard] = useState(false);
 
-  
+  const [showQRCode, setShowQRCode] = useState(false);
+  const [qrCodeUrl, setQrCodeUrl] = useState('');
+
 
   // Function to go to the next card
   const nextCard = () => {
@@ -72,7 +74,17 @@ export default function Home() {
   
   const handleSubmit = async () => {
     setIsLoading(true);
+    setShowQRCode(true); // Show QR code card
     console.log('Submitting form data:', userData);
+
+    // Get the QR code
+    const qrResponse = await fetch('http://127.0.0.1:5001/qrcode');
+    if (qrResponse.ok) {
+      const qrData = await qrResponse.json(); // Assuming the QR code API returns JSON
+      setQrCodeUrl(qrData.qrCodeUrl); // Update the state with the QR code URL
+    } else {
+      console.error('Failed to get QR code');
+    }
   
     try {
       const response = await fetch('http://127.0.0.1:5001/generate-podcast', {
@@ -86,8 +98,8 @@ export default function Home() {
       if (response.ok) {
         const data = await response.json();
         console.log('Podcast generated successfully');
-        setMp3Url(data.mp3url); // Assuming the response contains the MP3 URL
-        // setTranscript(data.transcript);
+        setMp3Url(data.mp3_url); // Assuming the response contains the MP3 URL
+        setTranscript(data.transcript);
         setShowSuccessCard(true);
       } else {
         console.error('Failed to generate podcast');
@@ -138,6 +150,22 @@ export default function Home() {
     </>
   );  
   
+  // Function to render the QR code card
+  const renderQRCodeCard = () => (
+    <div className="flex flex-col items-center justify-center p-8 bg-white rounded-lg shadow gap-8">
+      <h1 className="mb-2 font-semibold text-2xl">Generating Podcast...</h1>
+      <p className="text-sm text-gray-500">Please scan the QR code to continue.</p>
+        {qrCodeUrl ? (
+          <img src={qrCodeUrl} alt="QR Code" className="p-4" />
+        ) : (
+          <div className="p-4 bg-gray-200 rounded">QR Code Here</div>
+        )}
+    </div>
+  );
+
+  const toggleQRCodeCard = () => {
+    setShowQRCode(!showQRCode);
+  };
 
   const renderQuestionCard = () => {
     const cardData = QuestionCardMockData.data[currentStep];
@@ -281,11 +309,16 @@ export default function Home() {
           height={37}
           priority
         />
+      {/* Test Button to Toggle QR Code Card
+        <Button variant="outline" onClick={toggleQRCodeCard}>
+        Toggle QR Code Card (Test)
+        </Button> */}
       </div>
       <div style={{ minWidth: '560px'}}>
         {isLoading && <div>Loading...</div>}
+        {showQRCode && renderQRCodeCard()}
         {!isLoading && showSuccessCard && renderSuccessCard()}
-        {!isLoading && !showSuccessCard && renderQuestionCard()}
+        {!isLoading && !showSuccessCard && !showQRCode && renderQuestionCard()}
       </div>
 
       <Footer />

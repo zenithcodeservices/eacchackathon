@@ -22,6 +22,12 @@ export default function PodcastPage({ params }: { params: { id: string } }) {
         // Find the podcast with the matching ID
         const foundPodcast = podcasts.find(p => p.id === parseInt(id));
         setPodcast(foundPodcast);
+        console.log("Found podcast:", foundPodcast);
+        if (foundPodcast) {
+          console.log("Found podcast mp3URL:", foundPodcast.mp3_url);
+        } else {
+          console.log("Podcast not found for id:", id);
+        }
       }
     };
 
@@ -48,7 +54,7 @@ export default function PodcastPage({ params }: { params: { id: string } }) {
         <div className="flex flex-col items-center justify-center p-8 bg-gray-50 rounded-lg shadow gap-8">
         <h1 className="mb-2 font-semibold text-2xl">{podcast.title}</h1>
         <audio controls>
-          <source src={podcast.mp3url} type="audio/mpeg" />
+          <source src={podcast.mp3_url} type="audio/mpeg" />
           Your browser does not support the audio element.
         </audio>
         <p className="text-sm text-gray-500">{podcast.intro}</p>

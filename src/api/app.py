@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import supabase
 from flask_cors import CORS
 from podcast_generator import youtube_summary, podcast_intro, generate_podcast, get_podcasts, get_podcast_by_id
+from rssfeed import generate_rss, generate_qr
 from supabase import create_client, Client
 
 from dotenv import load_dotenv
@@ -73,13 +74,25 @@ def get_podcast_list():
     podcasts, status = get_podcasts()
     return jsonify(podcasts), status
 
-@app.route('/podcast/<int:podcast_id>', methods=['GET'])
-def get_podcast(podcast_id):
-    podcast, error_message = get_podcast_by_id(podcast_id)
-    if podcast:
-        return jsonify(podcast), 200
-    else:
-        return jsonify({"error": error_message}), 500 if error_message else 404
+@app.route('/rssfeed', methods=['GET'])
+def get_rssfeed(id):
+    rss = generate_rss(id)
+    return rss
+    
+@app.route('/qrcode', methods=['GET'])
+def generate_qr(url):
+    qrcode = generate_qr(id)
+    return qrcode
+
+
+
+# @app.route('/podcast/<int:podcast_id>', methods=['GET'])
+# def get_podcast(podcast_id):
+#     podcast, error_message = get_podcast_by_id(podcast_id)
+#     if podcast:
+#         return jsonify(podcast), 200
+#     else:
+#         return jsonify({"error": error_message}), 500 if error_message else 404
 
 
 if __name__ == "__main__":
