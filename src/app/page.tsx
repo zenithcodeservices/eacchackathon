@@ -155,11 +155,11 @@ export default function Home() {
     <div className="flex flex-col items-center justify-center p-8 bg-white rounded-lg shadow gap-8">
       <h1 className="mb-2 font-semibold text-2xl">Generating Podcast...</h1>
       <p className="text-sm text-gray-500">Please scan the QR code to continue.</p>
-        {qrCodeUrl ? (
-          <img src={qrCodeUrl} alt="QR Code" className="p-4" />
-        ) : (
-          <div className="p-4 bg-gray-200 rounded">QR Code Here</div>
-        )}
+      {qrCodeUrl ? (
+        <img src={qrCodeUrl} alt="QR Code" className="p-4" />
+      ) : (
+        <div className="p-4 bg-gray-200 rounded">QR Code Here</div>
+      )}
     </div>
   );
 
