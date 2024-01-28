@@ -10,7 +10,7 @@ import { CopyIcon } from 'lucide-react';
 export default function RssPage () {
 
   const router = useRouter();
-  const [rss, setRss] = useState(null);
+  const [rss, setRss] = useState('');
 
   useEffect(() => {
     const getRss = async () => {
