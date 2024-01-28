@@ -78,10 +78,11 @@ export default function Home() {
     console.log('Submitting form data:', userData);
 
     // Get the QR code
-    const qrResponse = await fetch('http://127.0.0.1:5001/qrcode');
+    const qrResponse = await fetch('http://127.0.0.1:5001/qrcode', { method: 'GET' });
     if (qrResponse.ok) {
-      const qrData = await qrResponse.json(); // Assuming the QR code API returns JSON
-      setQrCodeUrl(qrData.qrCodeUrl); // Update the state with the QR code URL
+      const qrCodeUrl = await qrResponse.text(); // change here
+      setQrCodeUrl(qrCodeUrl);
+      console.log('QR code generated successfully: ' + qrResponse.url);
     } else {
       console.error('Failed to get QR code');
     }
@@ -99,6 +100,7 @@ export default function Home() {
         const data = await response.json();
         console.log('Podcast generated successfully');
         setMp3Url(data.mp3_url); // Assuming the response contains the MP3 URL
+        console.log('MP3 URL:', data.mp3_url);
         setTranscript(data.transcript);
         setShowSuccessCard(true);
       } else {
