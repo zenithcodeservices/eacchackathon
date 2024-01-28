@@ -22,6 +22,12 @@ export default function PodcastPage({ params }: { params: { id: string } }) {
         // Find the podcast with the matching ID
         const foundPodcast = podcasts.find(p => p.id === parseInt(id));
         setPodcast(foundPodcast);
+        console.log("Found podcast:", foundPodcast);
+        if (foundPodcast) {
+          console.log("Found podcast mp3URL:", foundPodcast.mp3_url);
+        } else {
+          console.log("Podcast not found for id:", id);
+        }
       }
     };
 

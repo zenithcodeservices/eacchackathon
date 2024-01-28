@@ -6,7 +6,7 @@ const Navbar = () => {
     { id: 1, route: '/', label: 'Home' },
     { id: 2, route: '/about', label: 'About' },
     { id: 3, route: '/contact', label: 'Contact' },
-    { id: 3, route: '/podcastList', label: 'My Podcasts' },
+    { id: 4, route: '/podcastList', label: 'My Podcasts' },
     // Add more pages as needed
   ];
     
