@@ -38,7 +38,7 @@ export default function RssPage () {
         <div className="flex flex-col items-left justify-start p-8 bg-gray-50 rounded-lg shadow gap-8">
         <p className="mb-2 font-semibold text-m">Step 1: Copy your RSS link</p>
         {/* <p className="mb-2 font-semibold text-m">{rss}</p> */}
-        <p className="mb-2 font-semibold text-m">https://gvkfpctispwgsrwbpfgu.supabase.co/storage/v1/object/public/mydailydigest_rss/test_function.rss</p>
+        <p className="mb-2 font-semibold break-words text-m">https://gvkfpctispwgsrwbpfgu.supabase.co/storage/v1/object/public/mydailydigest_rss/test_function.rss</p>
           {/* <p className="mb-2 font-semibold text-m">{rss}</p> */}
           {/* <CopyToClipboard text={rss}> */}
           <CopyToClipboard text="https://gvkfpctispwgsrwbpfgu.supabase.co/storage/v1/object/public/mydailydigest_rss/test_function.rss">
