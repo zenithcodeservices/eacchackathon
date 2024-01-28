@@ -14,7 +14,7 @@ const QuestionCard = (props) => {
   return (
     <>
       {isVisible && (
-        <Card className="bg-white shadow-md p-4 rounded-lg"style={{ minWidth: '560px'}} >
+        <Card className="bg-white shadow-md p-4 rounded-lg"style={{ width: '320px'}} >
           <CardHeader className="mb-4">
             <CardTitle className="text-xl font-bold">{cardTitle}</CardTitle>
             <CardDescription className="text-gray-500">{cardDescription}</CardDescription>
