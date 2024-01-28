@@ -18,7 +18,7 @@ const truncateText = (text, maxLength) => {
 };
 
 const formatDate = (dateString) => {
-  const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+  const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' } as Intl.DateTimeFormatOptions;
   return new Date(dateString).toLocaleDateString("en-US", options);
 }
 
@@ -72,20 +72,20 @@ export default function PodcastList() {
             <Card key={index} className="shadow-md bg-gray-50 p-4 rounded-lg" style={{ maxWidth: '320px' }}>
               <div className="flex flex-col space-y-1.5 p-6">
                 <div className="bg-black text-white rounded-full w-8 h-8 flex items-center justify-center mb-2">
-                  <span className="text-xs">{podcast.id}</span>
+                  <span className="text-xs">{podcast['id']}</span>
                 </div>
                 <h3 className="text-xl font-semibold">
-                  {truncateText(podcast.title, 50)} {/* Assuming max 50 characters for title */}
+                  {truncateText(podcast['title'], 50)} {/* Assuming max 50 characters for title */}
                 </h3>
                 <p className="text-sm text-slate-400">
-                  {truncateText(podcast.intro, 100)} {/* Assuming max 100 characters for intro */}
+                  {truncateText(podcast['intro'], 100)} {/* Assuming max 100 characters for intro */}
                 </p>
                 <p className="text-xs text-slate-400">
-                  {podcast.createdAt}
+                  {podcast['createdAt']}
                 </p>
               </div>
               <div className="flex justify-between">
-                <Button variant="default" onClick={() => handleListenClick(podcast.id)}>Listen</Button>
+                <Button variant="default" onClick={() => handleListenClick(podcast['id'])}>Listen</Button>
               </div>
             </Card>
           ))}
