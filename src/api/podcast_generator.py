@@ -230,7 +230,7 @@ def get_podcast_by_id(podcast_id):
         # Assuming the first item in the response data is the podcast
         return podcast[0] if podcast else None, None
     except Exception as e:
-        app.logger.error(f"An exception occurred: {e}")
+        error(f"An exception occurred: {e}")
         return None, str(e)
 
 

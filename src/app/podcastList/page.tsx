@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Image from "next/image";
 
 // Utility function to truncate text
 const truncateText = (text, maxLength) => {
@@ -55,12 +56,20 @@ export default function PodcastList() {
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex gap-8">
         <Navbar />
       </div>
-      <div className="py-10">
+      <div className="flex flex-col py-10 items-center">
+        <Image
+            className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert m-4"
+            src="/pod.svg"
+            alt="podcast Logo"
+            width={90}
+            height={37}
+            priority
+          />
         <h1 className="text-3xl font-bold text-center mb-8">Podcasts Generated</h1>
         <p className="text-center text-lg mb-10">Listen to some of your podcasts created</p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {podcasts.map((podcast, index) => (
-            <Card key={index} className="bg-white shadow-md bg-gray-50 p-4 rounded-lg" style={{ maxWidth: '320px' }}>
+            <Card key={index} className="shadow-md bg-gray-50 p-4 rounded-lg" style={{ maxWidth: '320px' }}>
               <div className="flex flex-col space-y-1.5 p-6">
                 <div className="bg-black text-white rounded-full w-8 h-8 flex items-center justify-center mb-2">
                   <span className="text-xs">{podcast.id}</span>
