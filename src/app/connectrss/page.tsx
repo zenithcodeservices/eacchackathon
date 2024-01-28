@@ -9,14 +9,9 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Image from "next/image";
 
-
-
 export default function ConnectRss() {
-    const [rss, setRss] = useState([]);
-    const router = useRouter();
-
-    
-
+  const [rss, setRss] = useState([]);
+  const router = useRouter();
 }
   
     

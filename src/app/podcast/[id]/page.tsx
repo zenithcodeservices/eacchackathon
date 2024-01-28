@@ -46,18 +46,18 @@ export default function PodcastPage({ params }: { params: { id: string } }) {
       <div className="flex flex-col justify-start gap-8">
         
         <div className="flex flex-col items-center justify-center p-8 bg-gray-50 rounded-lg shadow gap-8">
-        <h1 className="mb-2 font-semibold text-2xl">{podcast.title}</h1>
-        <audio controls>
-          <source src={podcast.mp3url} type="audio/mpeg" />
+          <h1 className="mb-2 font-semibold text-2xl">{podcast.title}</h1>
+          <audio controls>
+            <source src={podcast.mp3url} type="audio/mpeg" />
           Your browser does not support the audio element.
-        </audio>
-        <p className="text-sm text-gray-500">{podcast.intro}</p>
+          </audio>
+          <p className="text-sm text-gray-500">{podcast.intro}</p>
         </div>
         <Button variant='outline' className='w-fit gap-2' onClick={() => router.back()}>
-        <ArrowLeft className="w-4"></ArrowLeft>
+          <ArrowLeft className="w-4"></ArrowLeft>
           Back</Button>
       </div>
-    <Footer />
+      <Footer />
     </main>
     
   );

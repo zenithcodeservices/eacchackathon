@@ -11,14 +11,14 @@ import Link from 'next/link';
 
 export default function WelcomePage() {
 
-const router = useRouter();
+  const router = useRouter();
 
 
-const handleGeneratePodcastsClick = () => {
+  const handleGeneratePodcastsClick = () => {
     if (typeof window !== "undefined") {
-        router.push('/');
-        }
-    };
+      router.push('/');
+    }
+  };
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-6 bg-gray-100">
 
