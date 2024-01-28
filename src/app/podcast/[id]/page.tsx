@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
+import { Icons } from '@/components/icons';
 import { ArrowLeft } from 'lucide-react';
 
 export default function PodcastPage({ params }: { params: { id: string } }) {
@@ -13,25 +14,21 @@ export default function PodcastPage({ params }: { params: { id: string } }) {
   const [podcast, setPodcast] = useState(null);
   const { id } = params;
 
-  const fetchPodcasts = async () => {
-    const response = await fetch(`http://localhost:5001/podcasts`);
-    if (response.ok) {
-      const podcasts = await response.json();
-      // Find the podcast with the matching ID
-      const foundPodcast = podcasts.find(p => p.id === parseInt(id));
-      setPodcast(foundPodcast);
-    }
-  };
-
   useEffect(() => {
+    const fetchPodcasts = async () => {
+      const response = await fetch(`http://localhost:5001/podcasts`);
+      if (response.ok) {
+        const podcasts = await response.json();
+        // Find the podcast with the matching ID
+        const foundPodcast = podcasts.find(p => p.id === parseInt(id));
+        setPodcast(foundPodcast);
+      }
+    };
+
     if (id) {
       fetchPodcasts();
     }
   }, [id]);
-
-  if (!podcast) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <>
