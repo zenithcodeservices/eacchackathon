@@ -34,8 +34,8 @@ const QuestionCard = (props) => {
 QuestionCard.propTypes = {
   cardTitle: PropTypes.string,
   cardDescription: PropTypes.string,
-  cardContent: PropTypes.string,
-  cardFooter: PropTypes.string,
+  cardContent: PropTypes.node,
+  cardFooter: PropTypes.node,
   isVisible: PropTypes.bool,
 };
   
