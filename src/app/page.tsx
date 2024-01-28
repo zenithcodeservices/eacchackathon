@@ -133,7 +133,7 @@ export default function Home() {
     <>
       <div className="flex flex-col items-center justify-center p-8 bg-white rounded-lg shadow gap-8">
         <h1 className="mb-2 font-semibold text-2xl">Podcast Created Successfully!</h1>
-        <audio controls>
+        <audio controls key={mp3Url}>
           <source src={mp3Url} type="audio/mpeg" />
         Your browser does not support the audio element.
         </audio>
