@@ -217,7 +217,7 @@ export default function Home() {
             step={50} // Since you have three steps: 0, 50, 100
             defaultValue={[Number(sliderValue)]}
             onChange={(value) => {
-              length = Object.keys(sliderSteps).find(key => sliderSteps[key] === value);
+              length = parseInt(Object.keys(sliderSteps).find(key => sliderSteps[key] === value) ?? '0', 10);
               handleInputChange('length', length);
             }}
             className="w-full"
