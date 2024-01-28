@@ -2,7 +2,6 @@
 
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import QuestionCard from "@/components/QuestionCard";
 import Image from "next/image";
 import { useState } from 'react';
 import { QuestionCardMockData } from '@/components/QuestionCardMockData';
