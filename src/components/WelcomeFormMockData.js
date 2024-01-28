@@ -29,4 +29,6 @@ export const WelcomeFormMockData = {
     cardContent: '<p>Test Content</p>',
     cardFooter: '<p>Test Footer</p>'
   }]
+  ,
+  'length': 5,
 }
